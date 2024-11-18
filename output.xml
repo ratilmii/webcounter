@@ -1,135 +1,504 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.10.6 on win32)" generated="2024-11-18T22:04:39.540550" rpa="false" schemaversion="5">
+<robot generator="Robot 7.1.1 (Python 3.10.6 on win32)" generated="2024-11-18T22:18:42.477091" rpa="false" schemaversion="5">
 <suite id="s1" name="Tests" source="Q:\Yliopisto\Tietojenkäsittelytieteen kandiohjelma\Ohjelmistotuotanto\webcounter\src\tests">
 <suite id="s1-s1" name="Increment" source="Q:\Yliopisto\Tietojenkäsittelytieteen kandiohjelma\Ohjelmistotuotanto\webcounter\src\tests\increment.robot">
 <kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-18T22:18:42.673136" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B911BB59C0&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-18T22:18:42.673136" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T22:18:42.670136" elapsed="0.004000"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-11-18T22:18:42.674136" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-18T22:18:42.674136" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-18T22:18:42.670136" elapsed="0.004000"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-11-18T22:18:42.674136" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-11-18T22:18:42.674136" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T22:18:42.674136" elapsed="0.000000"/>
+</branch>
+<branch type="ELSE">
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2024-11-18T22:04:39.731598" elapsed="0.000000"/>
+<status status="NOT RUN" start="2024-11-18T22:18:42.675136" elapsed="0.000000"/>
 </kw>
+<status status="NOT RUN" start="2024-11-18T22:18:42.674136" elapsed="0.001000"/>
+</branch>
+<status status="PASS" start="2024-11-18T22:18:42.674136" elapsed="0.001000"/>
+</if>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:39.732598" level="INFO">Opening browser 'firefox' to base url 'None'.</msg>
+<msg time="2024-11-18T22:18:42.675136" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
 <arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-11-18T22:04:39.731598" elapsed="6.180145"/>
+<status status="PASS" start="2024-11-18T22:18:42.675136" elapsed="14.811323"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:39.731598" elapsed="6.180145"/>
+<status status="PASS" start="2024-11-18T22:18:42.670136" elapsed="14.816323"/>
 </kw>
 <test id="s1-s1-t1" name="At start the counter is zero" line="7">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:45.912743" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:18:57.487458" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:19:02.368742" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-11-18T22:19:02.368742" level="FAIL">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</msg>
 <arg>${HOME_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2024-11-18T22:04:45.911743" elapsed="0.557125"/>
+<status status="FAIL" start="2024-11-18T22:18:57.487458" elapsed="4.917292">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </kw>
 <kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:46.976982" level="INFO">Page title is 'Laskuri'.</msg>
 <arg>Laskuri</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2024-11-18T22:04:46.468868" elapsed="0.508114"/>
+<status status="NOT RUN" start="2024-11-18T22:19:02.404750" elapsed="0.000000"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:48.002212" level="INFO">Current page contains text 'nappia painettu 0 kertaa'.</msg>
 <arg>nappia painettu 0 kertaa</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-11-18T22:04:46.976982" elapsed="1.025230"/>
+<status status="NOT RUN" start="2024-11-18T22:19:02.405750" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:45.911743" elapsed="2.090469"/>
+<status status="FAIL" start="2024-11-18T22:18:57.486459" elapsed="4.919291">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </test>
 <test id="s1-s1-t2" name="When button pressed twice the counter is two" line="12">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:48.005212" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:19:02.409751" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:19:04.888879" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-11-18T22:19:04.889879" level="FAIL">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</msg>
 <arg>${HOME_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2024-11-18T22:04:48.005212" elapsed="0.528119"/>
+<status status="FAIL" start="2024-11-18T22:19:02.409751" elapsed="2.480128">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:48.534332" level="INFO">Clicking button 'Paina'.</msg>
 <arg>Paina</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-18T22:04:48.533331" elapsed="1.571856"/>
+<status status="NOT RUN" start="2024-11-18T22:19:04.889879" elapsed="0.000000"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:50.105187" level="INFO">Clicking button 'Paina'.</msg>
 <arg>Paina</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-18T22:04:50.105187" elapsed="1.559984"/>
+<status status="NOT RUN" start="2024-11-18T22:19:04.889879" elapsed="0.000000"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:52.691249" level="INFO">Current page contains text 'nappia painettu 2 kertaa'.</msg>
 <arg>nappia painettu 2 kertaa</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-11-18T22:04:51.665171" elapsed="1.026078"/>
+<status status="NOT RUN" start="2024-11-18T22:19:04.890879" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:48.004212" elapsed="4.687037"/>
+<status status="FAIL" start="2024-11-18T22:19:02.408751" elapsed="2.482128">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-11-18T22:04:52.693249" elapsed="3.085834"/>
+<status status="PASS" start="2024-11-18T22:19:04.894880" elapsed="2.094698"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:39.565555" elapsed="16.213528"/>
+<status status="FAIL" start="2024-11-18T22:18:42.500097" elapsed="24.489481"/>
 </suite>
 <suite id="s1-s2" name="Reset" source="Q:\Yliopisto\Tietojenkäsittelytieteen kandiohjelma\Ohjelmistotuotanto\webcounter\src\tests\reset.robot">
 <kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-11-18T22:19:06.996579" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B911C88EE0&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-11-18T22:19:06.996579" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T22:19:06.995579" elapsed="0.001000"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-11-18T22:19:06.996579" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-11-18T22:19:06.996579" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-18T22:19:06.995579" elapsed="0.001000"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2024-11-18T22:19:06.996579" elapsed="0.001000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-11-18T22:19:06.997579" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-18T22:19:06.996579" elapsed="0.001000"/>
+</branch>
+<branch type="ELSE">
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2024-11-18T22:04:55.787085" elapsed="0.000000"/>
+<status status="NOT RUN" start="2024-11-18T22:19:06.997579" elapsed="0.000000"/>
 </kw>
+<status status="NOT RUN" start="2024-11-18T22:19:06.997579" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-11-18T22:19:06.996579" elapsed="0.001000"/>
+</if>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:04:55.787085" level="INFO">Opening browser 'firefox' to base url 'None'.</msg>
+<msg time="2024-11-18T22:19:06.997579" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
 <arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-11-18T22:04:55.787085" elapsed="5.793568"/>
+<status status="PASS" start="2024-11-18T22:19:06.997579" elapsed="1.273286"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:55.786085" elapsed="5.794568"/>
+<status status="PASS" start="2024-11-18T22:19:06.995579" elapsed="1.275286"/>
 </kw>
 <test id="s1-s2-t1" name="When counter has a nonzero value and it is reset the value becomes zero" line="7">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:05:01.580653" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:19:08.271865" level="INFO">Opening url 'http://localhost:5001'</msg>
+<msg time="2024-11-18T22:19:13.157470" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-11-18T22:19:13.157470" level="FAIL">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</msg>
 <arg>${HOME_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2024-11-18T22:05:01.580653" elapsed="0.558145"/>
+<status status="FAIL" start="2024-11-18T22:19:08.271865" elapsed="4.886606">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </kw>
 <kw name="Page Should Not Contain" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:05:03.684571" level="INFO">Current page does not contain text 'nappia painettu 0 kertaa'.</msg>
 <arg>nappia painettu 0 kertaa</arg>
 <doc>Verifies the current page does not contain ``text``.</doc>
-<status status="PASS" start="2024-11-18T22:05:02.138798" elapsed="1.545773"/>
+<status status="NOT RUN" start="2024-11-18T22:19:13.158471" elapsed="0.000000"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:05:03.684571" level="INFO">Clicking button 'Nollaa'.</msg>
 <arg>Nollaa</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-18T22:05:03.684571" elapsed="1.567407"/>
+<status status="NOT RUN" start="2024-11-18T22:19:13.163471" elapsed="0.000000"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-11-18T22:05:06.261149" level="INFO">Current page contains text 'nappia painettu 0 kertaa'.</msg>
 <arg>nappia painettu 0 kertaa</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-11-18T22:05:05.251978" elapsed="1.009171"/>
+<status status="NOT RUN" start="2024-11-18T22:19:13.163471" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:05:01.580653" elapsed="4.680496"/>
+<status status="FAIL" start="2024-11-18T22:19:08.270865" elapsed="4.892606">WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=131.0.6778.69)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6F3922775+28773]
+	(No symbol) [0x00007FF6F388AFB0]
+	(No symbol) [0x00007FF6F372552A]
+	(No symbol) [0x00007FF6F3722C81]
+	(No symbol) [0x00007FF6F3713989]
+	(No symbol) [0x00007FF6F37156DF]
+	(No symbol) [0x00007FF6F3713C4F]
+	(No symbol) [0x00007FF6F37134CD]
+	(No symbol) [0x00007FF6F37133EA]
+	(No symbol) [0x00007FF6F3711001]
+	(No symbol) [0x00007FF6F37118CC]
+	(No symbol) [0x00007FF6F37285FA]
+	(No symbol) [0x00007FF6F37BFFAE]
+	(No symbol) [0x00007FF6F379EF9A]
+	(No symbol) [0x00007FF6F37BF1A4]
+	(No symbol) [0x00007FF6F379ED43]
+	(No symbol) [0x00007FF6F376A548]
+	(No symbol) [0x00007FF6F376B6B1]
+	GetHandleVerifier [0x00007FF6F3C4F45D+3358029]
+	GetHandleVerifier [0x00007FF6F3C6430D+3443709]
+	GetHandleVerifier [0x00007FF6F3C583FD+3394797]
+	GetHandleVerifier [0x00007FF6F39E929B+842635]
+	(No symbol) [0x00007FF6F389654F]
+	(No symbol) [0x00007FF6F3891FA4]
+	(No symbol) [0x00007FF6F389213D]
+	(No symbol) [0x00007FF6F3881629]
+	BaseThreadInitThunk [0x00007FF8FFB97374+20]
+	RtlUserThreadStart [0x00007FF9003FCC91+33]
+</status>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-11-18T22:05:06.263149" elapsed="3.109704"/>
+<status status="PASS" start="2024-11-18T22:19:13.167473" elapsed="2.082466"/>
 </kw>
-<status status="PASS" start="2024-11-18T22:04:55.782084" elapsed="13.590769"/>
+<status status="FAIL" start="2024-11-18T22:19:06.991578" elapsed="8.258361"/>
 </suite>
-<status status="PASS" start="2024-11-18T22:04:39.543550" elapsed="29.832304"/>
+<status status="FAIL" start="2024-11-18T22:18:42.480092" elapsed="32.770848"/>
 </suite>
 <statistics>
 <total>
-<stat pass="3" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="3" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="2" fail="0" skip="0" id="s1-s1" name="Increment">Tests.Increment</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s2" name="Reset">Tests.Reset</stat>
+<stat pass="0" fail="3" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="2" skip="0" id="s1-s1" name="Increment">Tests.Increment</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s2" name="Reset">Tests.Reset</stat>
 </suite>
 </statistics>
 <errors>
